@@ -1,0 +1,98 @@
+﻿@model IEnumerable<WebVansSite.Models.ViewModels.IndexMinhasVanViewModel>
+
+@{
+    ViewBag.Title = "Minhas Vans";
+}
+
+
+<div class="gray-bg section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p>
+                            <a href="/MinhasVans/Cadastrar" class="btn btn-default btn-sm">Cadastrar uma Van</a>
+                        </p>
+                        @if (Model != null && Model.Count() > 0)
+                        {
+                            <div data-animation-effect="fadeInUpSmall" data-effect-delay="0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Marca)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Modelo)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Ano)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.CidadeEstado)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Placa)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.TipoServico)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.DataCadastro)
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <a href="/MinhasVans/Detalhes/@item.Id" title="Detalhes"><i class="fa fa-file-text pr-10"></i></a>&nbsp;&nbsp;&nbsp;
+                                                        <a href="/MinhasVans/Editar/@item.Id" title="Editar"><i class="fa fa-edit pr-10"></i></a>&nbsp;&nbsp;&nbsp;
+                                                        <a href="/MinhasVans/Apagar/@item.Id" title="Apagar"><i class="fa fa-trash pr-10"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Marca)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Modelo)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Ano)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.CidadeEstado)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Placa)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TipoServico)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.DataCadastro)
+                                                    </td>
+                                                </tr>
+                                            }
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div data-animation-effect="fadeInUpSmall" data-effect-delay="0">
+                                <span>Você não possui Vans cadastradas. Cadastre uma!</span>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

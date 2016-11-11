@@ -1,0 +1,273 @@
+﻿@model WebVansSite.Models.ViewModels.EditarVanViewModel
+
+@{
+    ViewBag.Title = "Editar Van";
+}
+
+<div class="gray-bg section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+
+                                @Html.HiddenFor(model => model.ID)
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.MarcaId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.MarcaId, Model.ListaMarca, "Selecione", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.MarcaId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group Modelo">
+                                    @Html.LabelFor(model => model.ModeloId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.ModeloId, Model.ListaModelo, "Selecione", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ModeloId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Ano, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Ano, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Ano, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.EstadoId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.EstadoId, Model.ListaEstado, "Selecione", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.EstadoId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group Cidade">
+                                    @Html.LabelFor(model => model.CidadeId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.CidadeId, Model.ListaCidade, "Selecione", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.CidadeId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Placa, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Placa, new { htmlAttributes = new { @class = "form-control", mask = "aaa-9999", style = "text-transform:uppercase" } })
+                                        @Html.ValidationMessageFor(model => model.Placa, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.TipoServicoId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.TipoServicoId, Model.ListaTipoServico, "Selecione", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.TipoServicoId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group Locomocao" style="display:none;">
+                                    @Html.LabelFor(model => model.TipoLocomocaoId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.TipoLocomocaoId, Model.TipoLocomocao, "Selecione", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.TipoLocomocaoId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group Carga" style="display:none;">
+                                    @Html.LabelFor(model => model.TipoCargaId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.TipoCargaId, Model.TipoCarga, "Selecione", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.TipoCargaId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group Tipo" style="display:none;">
+                                    @Html.LabelFor(model => model.TipoVanId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownListFor(model => model.TipoVanId, Model.TipoVan, "Selecione", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.TipoVanId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Observacoes, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.TextAreaFor(model => model.Observacoes, 5, 118, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Observacoes, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Salvar" class="btn btn-default" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <div>
+                            <a href="/MinhasVans" class="btn btn-primary">Voltar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script language="javascript" type="text/javascript">
+
+        var tipoLocomocaoId = @Model.TipoLocomocaoId;
+        var tipoCargaId = @Model.TipoCargaId;
+        var tipoVanId = @Model.TipoVanId;
+
+        $(document).ready(function () {
+
+            if (tipoLocomocaoId > 0)
+            {
+                $('.Locomocao').show();
+            }
+
+            if (tipoCargaId > 0)
+            {
+                $('.Carga').show();
+            }
+
+            if (tipoVanId > 0)
+            {
+                $('.Tipo').show();
+            }
+
+            $("#MarcaId").change(function () {
+                // clear all previous options
+                $("#ModeloId > option").remove();
+
+                var ddlModeloId = $("#ModeloId");
+                ddlModeloId.append($("<option />").val("0").text("Selecione"));
+
+                if ($(this).val() < 1) {
+                    $('.Modelo').hide();
+                }
+                else {
+                    $.get('/Util/GetModelo?id=' + $(this).val(), function (response) {
+                        var products = jQuery.parseJSON(response);
+
+                        for (i = 0; i < products.length; i++) {
+                            ddlModeloId.append($("<option />").val(products[i].Value).text(products[i].Text));
+                        }
+                    });
+
+                    $('.Modelo').show();
+                }
+            });
+
+            $("#EstadoId").change(function () {
+                // clear all previous options
+                $("#CidadeId > option").remove();
+
+                var ddlCidadeId = $("#CidadeId");
+                ddlCidadeId.append($("<option />").val("0").text("Selecione"));
+
+                if ($(this).val() < 1) {
+                    $('.Cidade').hide();
+                }
+                else {
+                    $.get('/Util/GetCidade?id=' + $(this).val(), function (response) {
+                        var products = jQuery.parseJSON(response);
+
+                        for (i = 0; i < products.length; i++) {
+                            ddlCidadeId.append($("<option />").val(products[i].Value).text(products[i].Text));
+                        }
+                    });
+
+                    $('.Cidade').show();
+                }
+            });
+
+            $("#TipoServicoId").change(function () {
+
+                // clear all previous options
+                $("#TipoLocomocaoId > option").remove();
+                $("#TipoCargaId > option").remove();
+
+                var ddlTipoLocomocaoId = $("#TipoLocomocaoId");
+                ddlTipoLocomocaoId.append($("<option />").val("0").text("Selecione"));
+
+                var ddlTipoCargaId = $("#TipoCargaId");
+                ddlTipoCargaId.append($("<option />").val("0").text("Selecione"));
+
+                if ($(this).val() != 1 && $(this).val() != 2) {
+                    $('.Locomocao').hide();
+                    $('.Carga').hide();
+                    $('.Tipo').hide();
+                }
+
+                if ($(this).val() == 1) {
+                    $.get('/Util/GetTipoLocomocao', function (response) {
+                        var products = jQuery.parseJSON(response);
+
+                        for (i = 0; i < products.length; i++) {
+                            ddlTipoLocomocaoId.append($("<option />").val(products[i].Value).text(products[i].Text));
+                        }
+                    });
+
+                    $('.Locomocao').show();
+                    $('.Carga').hide();
+                    $('.Tipo').hide();
+                }
+
+                if ($(this).val() == 2) {
+                    $.get('/Util/GetTipoCarga', function (response) {
+                        var products = jQuery.parseJSON(response);
+
+                        for (i = 0; i < products.length; i++) {
+                            ddlTipoCargaId.append($("<option />").val(products[i].Value).text(products[i].Text));
+                        }
+                    });
+
+                    $('.Locomocao').hide();
+                    $('.Carga').show();
+                    $('.Tipo').hide();
+                }
+
+            });
+
+            $("#TipoCargaId").change(function () {
+
+                // clear all previous options
+                $("#TipoVanId > option").remove();
+
+                $.get('/Util/GetTipoVan?id=' + $(this).val(), function (response) {
+                    var products = jQuery.parseJSON(response);
+                    var ddlTipoVanId = $("#TipoVanId");
+
+                    ddlTipoVanId.append($("<option />").val("0").text("Selecione"));
+
+                    for (i = 0; i < products.length; i++) {
+                        ddlTipoVanId.append($("<option />").val(products[i].Value).text(products[i].Text));
+                    }
+                });
+
+                $('.Locomocao').hide();
+                $('.Carga').show();
+                $('.Tipo').show();
+
+            });
+        });
+
+
+    </script>
+}

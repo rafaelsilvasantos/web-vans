@@ -1,0 +1,124 @@
+﻿@model WebVansSite.Models.ViewModels.DetalhesVanViewModel
+
+@{
+    ViewBag.Title = "Detalhes da Van";
+}
+<div class="gray-bg section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div>
+                            <dl class="dl-horizontal">
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Marca)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Marca)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Modelo)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Modelo)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Ano)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Ano)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.CidadeEstado)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.CidadeEstado)
+                                </dd>
+
+                                @if (!string.IsNullOrEmpty(Model.TipoServico))
+                                {
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.TipoServico)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.TipoServico)
+                                </dd>
+                                }
+
+                                @if (!string.IsNullOrEmpty(Model.TipoLocomocao))
+                                {
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.TipoLocomocao)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.TipoLocomocao)
+                                </dd>
+                                }
+
+                                @if (!string.IsNullOrEmpty(Model.TipoCarga))
+                                {
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.TipoCarga)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.TipoCarga)
+                                </dd>
+                                }
+
+                                @if (!string.IsNullOrEmpty(Model.TipoVan))
+                                {
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.TipoVan)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.TipoVan)
+                                </dd>
+                                }
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Observacoes)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Observacoes)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Proprietario)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Proprietario)
+                                </dd>
+
+                                <dt>
+                                    @Html.DisplayNameFor(model => model.Telefone)
+                                </dt>
+
+                                <dd>
+                                    @Html.DisplayFor(model => model.Telefone)
+                                </dd>
+                            </dl>
+                        </div>
+                        <p>
+                            <a href="/PesquisarVans/Solicitar/@Model.ID" class="btn btn-primary"><i class="fa fa-send pr-10"></i> Solicitar</a>
+                            <a href="/PesquisarVans" class="btn btn-primary">Voltar</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

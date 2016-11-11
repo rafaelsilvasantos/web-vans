@@ -1,0 +1,63 @@
+﻿@using Microsoft.AspNet.Identity
+@using WebVansSite.Models
+
+@if (Request.IsAuthenticated)
+{
+    <div class="btn-group dropdown">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Olá @User.Identity.GetUserName()!</button>
+        <ul class="dropdown-menu dropdown-menu-right dropdown-animation">
+            <li>
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <button type="button" onclick="window.location.href = '/Manage'" class="btn btn-group btn-default btn-sm">Minha conta</button>
+                    <span></span>
+                    <button type="submit" class="btn btn-group btn-dark btn-sm">Sair</button>
+                }
+            </li>
+        </ul>
+    </div>
+}
+else
+{
+    <div class="btn-group dropdown">
+        <button type="button" class="btn dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Entrar</button>
+        <ul class="dropdown-menu dropdown-menu-right dropdown-animation">
+            <li>
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group has-feedback">
+                        <label class="control-label">Email</label>
+                        <input type="text" class="form-control" id="Email" name="Email" placeholder="">
+                        <i class="fa fa-user form-control-feedback"></i>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label class="control-label">Senha</label>
+                        <input type="password" class="form-control" id="Senha" name="Senha" placeholder="">
+                        <i class="fa fa-lock form-control-feedback"></i>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="checkbox" value="1" id="LembrarDeMim" name="LembrarDeMim" /> Lembrar-se de mim
+                    </div>
+                    <button type="submit" class="btn btn-group btn-dark btn-sm">Entrar</button>
+                    @Html.ActionLink("Esqueci minha senha", "ForgotPassword")
+
+                    <span>ou</span>
+                    <button type="button" onclick="window.location.href = '/Account/Register'" class="btn btn-group btn-default btn-sm">Registrar-se</button>
+                }
+                <div class="divider"></div>
+                @using (Html.BeginForm("ExternalLogin", "Account", FormMethod.Post, new { ReturnUrl = "", name = "FormSocialLogin" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" id="Provedor" name="Provedor" />
+                    <span class="text-center">Entrar com</span>
+                    <ul class="social-links clearfix">
+                        <li class="facebook"><a target="_self" href="/Account/ExternalLogin?provedor=Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li class="googleplus"><a target="_self" href="/Account/ExternalLogin?provedor=Google"><i class="fa fa-google-plus"></i></a></li>
+                    </ul>
+                }
+            </li>
+        </ul>
+    </div>
+}

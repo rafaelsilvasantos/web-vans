@@ -1,0 +1,182 @@
+﻿@model WebVansSite.Models.ViewModels.SolicitarVanViewModel
+
+@{
+    ViewBag.Title = "Solicitar Van";
+}
+<div class="gray-bg section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div>
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.HiddenFor(model => model.ID)
+
+                                <div class="form-horizontal">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Marca, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Marca, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Modelo, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Modelo, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Ano, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Ano, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CidadeEstado, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.CidadeEstado, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                        </div>
+                                    </div>
+
+                                    @if (!string.IsNullOrEmpty(Model.TipoServico))
+                                    {
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.TipoServico, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.TipoServico, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                            </div>
+                                        </div>
+                                    }
+
+                                    @if (!string.IsNullOrEmpty(Model.TipoLocomocao))
+                                    {
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.TipoLocomocao, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.TipoLocomocao, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                            </div>
+                                        </div>
+                                    }
+
+                                    @if (!string.IsNullOrEmpty(Model.TipoCarga))
+                                    {
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.TipoCarga, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.TipoCarga, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                            </div>
+                                        </div>
+                                    }
+
+                                    @if (!string.IsNullOrEmpty(Model.TipoVan))
+                                    {
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.TipoVan, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.TipoVan, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                            </div>
+                                        </div>
+                                    }
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Observacoes, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Observacoes, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Proprietario, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Proprietario, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Telefone, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Telefone, new { htmlAttributes = new { @class = "form-control", @readonly = true } })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @if (!Model.SolicitacaoConcluida)
+                                            {
+                                                @Html.TextAreaFor(model => model.Descricao, 5, 118, new { @class = "form-control" })
+                                            }
+                                            else
+                                            {
+                                                @Html.TextAreaFor(model => model.Descricao, 5, 118, new { @class = "form-control", @readonly = true })
+                                            }
+                                            @Html.ValidationMessageFor(model => model.Descricao, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    @if (!Model.SolicitacaoConcluida)
+                                    {
+                                        <div class="form-group">
+                                            <div class="col-md-offset-2 col-md-10">
+                                                <input type="submit" value="Solicitar" class="btn btn-default" />
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
+                        </div>
+                        <p>
+                            <a href="/PesquisarVans/Detalhes/@Model.ID" class="btn btn-primary"><i class="fa fa-file-text pr-10"></i> Detalhes</a>
+                            <a href="/PesquisarVans" class="btn btn-primary">Voltar</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<button class="btn btn-default" data-toggle="modal" data-target="#myModal" id="launchModalButton" style="display:none;"></button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Solicitação concluída com sucesso!</h4>
+            </div>
+            <div class="modal-body">
+                <p>Sua solicitação foi concluída com sucesso!</p>
+                <p>Um e-mail foi enviado ao Proprietário da Van, aguarde o contato dele para efetivar a locação.</p>
+            </div>
+            <div class="modal-footer">
+                <a href="/MinhasSolicitacoes" class="btn-default btn">Minhas solicitações</a>
+                <a href="/PesquisarVans" class="btn-default btn">Pesquisar Vans</a>
+                <a href="/Home" class="btn-default btn">Home</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jquerymask")
+
+    @if (Model.SolicitacaoConcluida)
+    {
+        <script language="javascript" type="text/javascript">
+            $(document).ready(function () {
+                $("#launchModalButton").click();
+            });
+        </script>
+    }
+}

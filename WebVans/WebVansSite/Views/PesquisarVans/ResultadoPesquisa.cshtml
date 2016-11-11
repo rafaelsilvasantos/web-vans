@@ -1,0 +1,96 @@
+﻿@model IEnumerable<WebVansSite.Models.ViewModels.ResultadoPesquisarVansViewModel>
+
+@{
+    ViewBag.Title = "Resultado da Pesquisa";
+}
+
+<div class="gray-bg section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        @if (Model != null && Model.Count() > 0)
+                        {
+                            <div data-animation-effect="fadeInUpSmall" data-effect-delay="0">
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Marca)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Modelo)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Ano)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.CidadeEstado)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.TipoServico)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Proprietario)
+                                                </th>
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.Telefone)
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <a href="/PesquisarVans/Detalhes/@item.Id" title="Detalhes"><i class="fa fa-file-text pr-10"></i></a>&nbsp;&nbsp;&nbsp;
+                                                        <a href="/PesquisarVans/Solicitar/@item.Id" title="Solicitar"><i class="fa fa-send pr-10"></i></a>
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Marca)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Modelo)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Ano)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.CidadeEstado)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.TipoServico)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Proprietario)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Telefone)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div data-animation-effect="fadeInUpSmall" data-effect-delay="0">
+                                <span>Nenhuma Van encontrada! Refaça sua busca.</span>
+                            </div>
+                            <p></p>
+                        }
+
+                        <div>
+                            <a href="/PesquisarVans" class="btn btn-primary">Voltar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

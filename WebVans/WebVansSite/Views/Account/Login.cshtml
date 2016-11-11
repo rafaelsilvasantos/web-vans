@@ -1,0 +1,61 @@
+﻿@using WebVansSite.Models.ViewModels
+@model LoginViewModel
+@{
+    ViewBag.Title = "Login";
+}
+
+<!-- main start -->
+<!-- ================ -->
+<div class="main object-non-visible" data-animation-effect="fadeInDownSmall" data-effect-delay="300">
+    <div class="form-block center-block">
+        <h2>Bem-vindo ao WebVans</h2>
+        <h6>Entre com a sua conta para oferecer, pesquisar e alugar uma Van!</h6>
+        <hr>
+        @using (Html.BeginForm("LoginPage", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            
+            <div class="form-group has-feedback">
+                @Html.LabelFor(m => m.Email, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-8">
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
+                    <i class="fa fa-user form-control-feedback"></i>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                @Html.LabelFor(m => m.Password, new { @class = "col-sm-3 control-label" })
+                <div class="col-sm-8">
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Senha" })
+                    <i class="fa fa-lock form-control-feedback"></i>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-8">
+                    <div class="checkbox">
+                        <label>
+                            @Html.CheckBoxFor(m => m.RememberMe) Lembrar-se de mim
+                        </label>
+                    </div>
+                    <input type="submit" value="Entrar" class="btn btn-default" />
+                    @Html.ActionLink("Esqueci minha senha", "ForgotPassword")
+                </div>
+            </div>
+        }
+        @using (Html.BeginForm("ExternalLogin", "Account", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl, name = "FormSocialLogin" }))
+        {
+            @Html.AntiForgeryToken();
+            <input type="hidden" id="Provedor" name="Provedor" />
+            <span class="text-center text-muted">Entrar com </span>
+            <ul class="social-links colored circle clearfix">
+                <li class="facebook"><a target="_self" href="/Account/ExternalLogin?provedor=Facebook"><i class="fa fa-facebook"></i></a></li>
+                <li class="googleplus"><a target="_self" href="/Account/ExternalLogin?provedor=Google"><i class="fa fa-google-plus"></i></a></li>
+            </ul>
+            <span>ou @Html.ActionLink("Registre-se como um novo usuário", "Register")</span>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
